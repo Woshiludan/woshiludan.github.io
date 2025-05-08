@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>病例分享 - 基于ResNet的肺部疾病辅助诊断系统</title>
+    <link rel="stylesheet" href="css/jieshao.css">
+    <style>
+        .bingli-bg-full {
+            position: fixed;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            object-fit: cover;
+            pointer-events: none;
+            user-select: none;
+        }
+        .bingli-main {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 110px 24px 0 24px;
+            position: relative;
+            min-height: 100vh;
+            z-index: 1;
+        }
+        .bingli-title {
+            display: block;
+            margin: 0 auto 40px auto;
+            max-width: 220px;
+            width: 40vw;
+        }
+        .bingli-cards {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            gap: 48px;
+            margin-top: 150px;
+            
+            position: relative;
+            z-index: 2;
+        }
+        .bingli-card-img {
+            width: 380px;
+            height: 500px;
+            max-width: 100vw;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            background: #fff;
+            display: block;
+            object-fit: cover;
+        }
+        @media (max-width: 1500px) {
+            .bingli-card-img { width: 320px; height: 420px; }
+            .bingli-cards { gap: 32px; }
+        }
+        @media (max-width: 1100px) {
+            .bingli-card-img { width: 240px; height: 320px; }
+            .bingli-cards { gap: 18px; }
+        }
+        @media (max-width: 900px) {
+            .bingli-cards { flex-direction: column; align-items: center; gap: 24px; }
+            .bingli-card-img { width: 90vw; max-width: 400px; height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 全屏背景图片 -->
+    <img src="img/binglifenxiang/背景.png" alt="全屏背景" class="bingli-bg-full">
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="jieshao.html">介绍</a></li>
+                <li><a href="jishumoxing.html">技术模型</a></li>
+                <li><a href="binglifenxiang.html" class="active">病例分享</a></li>
+                <li><a href="tuandui.html">团队</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="bingli-main">
+        <!-- 标题图片 -->
+        <div>
+            <img src="img/binglifenxiang/标题.png" alt="病例分享" class="bingli-title"> 
+        </div>
+        <!-- 四个病例卡片 -->
+        <div class="bingli-cards">
+            <img src="img/binglifenxiang/col-md-1.png" alt="病例1" class="bingli-card-img">
+            <img src="img/binglifenxiang/col-md-2.png" alt="病例2" class="bingli-card-img">
+            <img src="img/binglifenxiang/col-md-3.png" alt="病例3" class="bingli-card-img">
+            <img src="img/binglifenxiang/col-md-4.png" alt="病例4" class="bingli-card-img">
+        </div>
+    </main>
+    <!-- 底部蓝色区块和页脚 -->
+    <footer class="jieshao-footer">
+        <div class="footer-blue">
+            <div class="footer-about">
+                <h3>关于我们</h3>
+                <p>我们是由华南师范大学的人工智能团队，运用人工智能技术来实现对肺部疾病的高效分析</p>
+            </div>
+        </div>
+        <div class="footer-black">
+            <div class="footer-nav">
+                <a href="index.html">首页</a>
+                <a href="tuandui.html">团队</a>
+                <a href="jishumoxing.html">技术模型</a>
+                <a href="binglifenxiang.html">病例分享</a>
+                <a href="jieshao.html">介绍</a>
+            </div>
+            <div class="footer-copyright">
+                ©基于ResNet的肺部疾病辅助诊断系统
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
