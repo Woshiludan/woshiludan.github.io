@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>基于ResNet的肺部疾病辅助诊断系统</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!-- 顶部导航栏 -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="jieshao.html" >介绍</a></li>
+                    <li><a href="jishumoxing.html">技术模型</a></li>
+                    <li><a href="binglifenxiang.html">病例分享</a></li>
+                    <li><a href="tuandui.html">团队</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="main-section">
+            <!-- 左侧内容区 -->
+            <div class="left-content">
+                <img src="img/index/标题文字.png" alt="主标题" class="main-title-img">
+                
+                <div class="btn-group">
+                    <img src="img/index/输入ct数据.png" alt="输入CT数据" class="btn-img btn-upload" id="btnUpload">
+                    <img src="img/index/开始分析.png" alt="开始分析" class="btn-img btn-analyze" id="btnAnalyze">
+                </div>
+                <!-- 左下角渐变背景 -->
+                <img src="img/index/backround 2.png" alt="左下角背景" class="bg-left-img">
+            </div>
+            <!-- 右侧插画区（可后续补充肺部插画） -->
+            <div class="right-illustration">
+                <img src="img/index/background new.png" alt="插画" class="illustration-img">
+            </div>
+
+        </main>
+        <!-- 弹窗遮罩和弹窗内容 -->
+        <div id="modal-mask" class="modal-mask" style="display:none;"></div>
+        <div id="modal-upload" class="modal-dialog" style="display:none;">
+            <!-- 弹窗1：上传CT图像数据 -->
+            <div class="modal-header">
+                <span class="modal-title">上传CT图像数据</span>
+                <span class="modal-subtitle">Upload CT image data and wait for a while</span>
+                <button class="modal-close" id="modalCloseBtn1">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-upload-area" id="modalUploadArea">
+                    <img src="img/弹窗/弹窗1.png" alt="上传CT图像" class="modal-upload-icon">
+                    <div class="modal-upload-text">上传CT图像</div>
+                    <div class="modal-upload-or">OR</div>
+                    <label class="modal-upload-btn">
+                        <input type="file" id="modalFileInput" style="display:none;">
+                        浏览本地文件
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-cancel" id="modalCancelBtn1">取消</button>
+                <button class="modal-btn modal-primary" id="modalUploadBtn">生成</button>
+            </div>
+        </div>
+        <div id="modal-upload-success" class="modal-dialog" style="display:none;">
+            <!-- 弹窗2：上传成功 -->
+            <div class="modal-header">
+                <span class="modal-title">上传CT图像数据</span>
+                <span class="modal-subtitle">Upload CT image data and wait for a while</span>
+                <button class="modal-close" id="modalCloseBtn2">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-upload-area modal-upload-area-success">
+                    <img src="img/弹窗/弹窗2.png" alt="上传成功" class="modal-upload-icon">
+                    <div class="modal-upload-text">成功上传CT图像</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-cancel" id="modalCancelBtn2">取消</button>
+                <button class="modal-btn modal-primary" id="modalAnalyzeBtn">开始分析</button>
+            </div>
+        </div>
+        <div id="modal-result" class="modal-dialog" style="display:none;">
+            <!-- 弹窗3：分析结果 -->
+            <div class="modal-header">
+                <span class="modal-title">患病二分检测</span>
+                <span class="modal-subtitle">Generate a binary detection for the disease</span>
+                <button class="modal-close" id="modalCloseBtn3">×</button>
+            </div>
+            <div class="modal-body modal-body-flex">
+                <img src="img/弹窗/患病装饰.png" alt="装饰" class="modal-bg-illu">
+                <div class="modal-result-text">
+                    <span class="modal-result-label">患病</span>
+                </div>
+                <img src="img/弹窗/患病ct.png" alt="CT结果" class="modal-ct-img">
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-cancel" id="modalCancelBtn3">取消</button>
+                <button class="modal-btn modal-primary" id="modalReportBtn">生成辅助报告</button>
+            </div>
+        </div>
+        <!-- 健康结果弹窗 -->
+        <div id="modal-result-healthy" class="modal-dialog" style="display:none;min-width:600px;">
+            <div class="modal-header">
+                <span class="modal-title">健康二分检测</span>
+                <span class="modal-subtitle">Generate a binary detection for the disease</span>
+                <button class="modal-close" id="modalCloseBtn4">×</button>
+            </div>
+            <div class="modal-body modal-body-flex">
+                <img src="img/弹窗/健康装饰.png" alt="装饰" class="modal-bg-illu">
+                <div class="modal-result-text">
+                    <span class="modal-result-label" style="color:#1abc9c;">健康</span>
+                </div>
+                <img src="img/弹窗/健康ct.png" alt="CT结果" class="modal-ct-img">
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-cancel" id="modalCancelBtn4">取消</button>
+                <button class="modal-btn modal-primary" id="modalReportBtnHealthy">收到</button>
+            </div>
+        </div>
+        <!-- 提示弹窗：请先输入CT数据 -->
+        <div id="modal-tip" class="modal-dialog" style="display:none;min-width:320px;width:360px;">
+            <div class="modal-header">
+                <span class="modal-title">提示</span>
+                <button class="modal-close" id="modalCloseBtnTip">×</button>
+            </div>
+            <div class="modal-body" style="padding-bottom:0;">
+                <div style="font-size:18px;color:#1761a0;text-align:center;margin:24px 0 8px 0;">请先输入CT数据</div>
+            </div>
+            <div class="modal-footer" style="justify-content:center;">
+                <button class="modal-btn modal-primary" id="modalTipOkBtn">确定</button>
+            </div>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>
